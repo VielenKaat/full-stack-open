@@ -8,22 +8,31 @@ const Button = ({ callback, text }) => {
     )
 }
 
-const Statistics = ({good, neutral, bad}) => {
-    const average = ( good - bad ) / (good + neutral + bad)
+const Statistics = ({ good, neutral, bad }) => {
+    const average = (good - bad) / (good + neutral + bad)
     const positive = ((good) / (good + neutral + bad)) * 100
+    if ((good + neutral + bad) === 0) {
+        return (
+            <div>
+                <h1>statistics</h1>
+                No feedback given
+            </div>
+
+        )
+    }
     return (
         <div>
             <h1>statistics</h1>
             <div>
-                good {good}<br/>
-                neutral {neutral}<br/>
-                bad {bad}<br/>
-                average {average} <br/>
+                good {good}<br />
+                neutral {neutral}<br />
+                bad {bad}<br />
+                average {average} <br />
                 positive {positive}%
             </div>
         </div>
-        
-    )   
+
+    )
 }
 const App = () => {
     // save clicks of each button to its own state
