@@ -9,6 +9,8 @@ const Button = ({ callback, text }) => {
 }
 
 const Statistics = ({good, neutral, bad}) => {
+    const average = ( good - bad ) / (good + neutral + bad)
+    const positive = ((good) / (good + neutral + bad)) * 100
     return (
         <div>
             <h1>statistics</h1>
@@ -16,6 +18,8 @@ const Statistics = ({good, neutral, bad}) => {
                 good {good}<br/>
                 neutral {neutral}<br/>
                 bad {bad}<br/>
+                average {average} <br/>
+                positive {positive}%
             </div>
         </div>
         
