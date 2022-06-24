@@ -6,6 +6,23 @@ const Button = ({eventFunction, text}) => {
     )
 }
 
+const HighestVotes = ({anecdotes, votes}) => {
+    let highestIndex = 0;
+    let highestVotes = 0;
+    for (let i = 0; i < anecdotes.length; i++) {
+        if (votes[i] > highestVotes) {
+            highestIndex = i
+            highestVotes = votes[i]
+        }
+    }
+
+    return (
+        <div>
+            <h1>Anecdotes with most votes</h1>
+            {anecdotes[highestIndex]} has {highestVotes} votes
+        </div>
+    )
+}
 const App = () => {
     const anecdotes = [
         'If it hurts, do it more often.',
@@ -35,11 +52,13 @@ const App = () => {
     }
     return (
         <div>
+            <h1>Anecedote of the day</h1>
             {anecdotes[selected]}
             <br/>
             has {votes[selected]} votes <br/>
             <Button eventFunction={() => voteFunc() } text="Vote"/>
             <Button eventFunction={() => nextAnecedote(anecdotes.length)} text="next anecedote"></Button>
+            <HighestVotes anecdotes={anecdotes} votes={votes}/>
         </div> 
     )
 }
