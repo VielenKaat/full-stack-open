@@ -9,14 +9,22 @@ const Part = ({ part }) =>
 
 
 const Content = ({ parts }) => {
+  let sum = parts.reduce((sum, part) => {
+    return sum + part.exercises
+  }, 0)
+
+  const renderParts = parts.map(x => {
+    return (
+      <Part key={x.id} part={x} />
+    )
+  })
+
 
   return (
-    parts.map(x => {
-
-      return (
-        <Part key={x.id} part={x} />
-      )
-    })
+    <div>
+      {renderParts}
+      <Total sum={sum} />
+    </div>
   )
 }
 
@@ -51,6 +59,11 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
+      },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4
       }
     ]
   }
