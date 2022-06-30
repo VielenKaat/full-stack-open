@@ -12,6 +12,14 @@ const App = () => {
 
   const submitForm = (event) => {
     event.preventDefault()
+
+    const exists = persons.find(({ name }) => newName === name)
+    if (exists) {
+      alert(`${newName} is already added to phonebook`)
+      setNewName('')
+      return
+    }
+
     const newPerson = {
       name: newName
     }
