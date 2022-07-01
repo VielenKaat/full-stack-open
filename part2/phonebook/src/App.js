@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const Filter = ({ search, eventHandler }) => <div>filter shown with <input value={search} onChange={eventHandler} /></div>
 const PersonForm = ({ submitForm, newName, handleNameChange, newNumber, handlePhoneChange }) => {
@@ -37,6 +38,13 @@ const App = () => {
   const [newNumber, setNewNumber] = useState(0)
   const [search, setSearch] = useState('')
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        console.log(response.data)
+      })
+  }, [])
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
