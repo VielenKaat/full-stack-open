@@ -1,19 +1,21 @@
 import { useState } from 'react'
 
 const Filter = ({ search, eventHandler }) => <div>filter shown with <input value={search} onChange={eventHandler} /></div>
-const PersonForm = ({ submitForm, newName, handleNameChange, newNumber, handlePhoneChange }) =>
-  <form onSubmit={submitForm}>
-    <div>
-      name: <input value={newName} onChange={handleNameChange} />
-    </div>
-    <div>
-      number: <input value={newNumber} onChange={handlePhoneChange} />
-    </div>
-    <div>
-      <button type="submit">add</button>
-    </div>
-  </form>
-
+const PersonForm = ({ submitForm, newName, handleNameChange, newNumber, handlePhoneChange }) => {
+  return (
+    <form onSubmit={submitForm}>
+      <div>
+        name: <input value={newName} onChange={handleNameChange} />
+      </div>
+      <div>
+        number: <input value={newNumber} onChange={handlePhoneChange} />
+      </div>
+      <div>
+        <button type="submit">add</button>
+      </div>
+    </form>
+  )
+}
 const Persons = ({ shownItems }) =>
   <ul>
     {shownItems().map((person) =>
@@ -78,13 +80,12 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter search={search} />
+      <Filter search={search} eventHandler={handleSearchChange} />
       <h2>Add new person</h2>
       <PersonForm
         submitForm={submitForm}
-        eventHandler={handleSearchChange}
         newName={newName}
-        handlenameChange={handleNameChange}
+        handleNameChange={handleNameChange}
         newNumber={newNumber}
         handlePhoneChange={handlePhoneChange} />
 
